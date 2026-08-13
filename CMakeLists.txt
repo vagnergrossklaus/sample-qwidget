@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 4.2)
-project(sample_qwidget)
+project(sample-qwidget)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_AUTOMOC ON)
@@ -12,15 +12,19 @@ find_package(Qt6 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(sample_qwidget main.cpp
+add_executable(${PROJECT_NAME} main.cpp
         mainwindow.cpp mainwindow.h
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui)
 
-target_link_libraries(sample_qwidget
+target_link_libraries(${PROJECT_NAME}
         Qt::Core
         Qt::Gui
         Qt::Widgets
 )
 
+include(GNUInstallDirs)
+install(TARGETS ${PROJECT_NAME}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
